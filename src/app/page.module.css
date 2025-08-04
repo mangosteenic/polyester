@@ -134,7 +134,7 @@ a.secondary {
   border: 1px solid var(--foreground);
 }
 
-::placeholder {
+.input::placeholder {
   color: var(--accent-secondary);
 }
 
