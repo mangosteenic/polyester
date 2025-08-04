@@ -12,6 +12,7 @@ export default function Home() {
           />
         <button type="submit" className={styles.button}>Submit</button>
       </form>
+      <a href="https://getsongbpm.com">GetSongBPM</a>
     </div>
   );
 }
