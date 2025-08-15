@@ -11,7 +11,7 @@ const nextConfig = {
       {
         source: '/getsongbpm',
         destination: 'https://getsongbpm.com',
-        permanent: true, // or false for temporary (302)
+        permanent: true,
       },
     ];
   },
