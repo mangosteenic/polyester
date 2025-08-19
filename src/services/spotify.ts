@@ -7,7 +7,7 @@ const spotifyApi = new SpotifyWebApi({
   redirectUri: process.env.SPOTIFY_REDIRECT_URI,
 });
 
-const accessToken: string | null = null;
+let accessToken: string | null = null;
 
 export async function getAccessToken() {
     if (accessToken) return accessToken;
