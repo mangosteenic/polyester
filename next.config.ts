@@ -19,5 +19,10 @@ const nextConfig = {
 
 module.exports = nextConfig;
 
+module.exports = {
+  images: {
+    domains: ["mosaic.scdn.co", "image-cdn-ak.spotifycdn.com"],
+  },
+};
 
 export default nextConfig;
