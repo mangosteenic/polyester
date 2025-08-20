@@ -7,6 +7,7 @@ import styles from "./page.module.css";
 type TrackObject = {
   artists: { name: string }[];
   name: string,
+  album: { images: { url: string }[] };
 }
 
 export default function Home() {
@@ -73,6 +74,12 @@ export default function Home() {
             <ul>
               {playlist.tracks.items.map((item, index) => (
                 <li key={index} className={styles.track}>
+                  <Image
+                    src={item.track.album.images[0].url}
+                    alt={item.track.name}
+                    width={50}
+                    height={50}
+                  />
                   <span>{item.track.name}</span>
                   <span> by {item.track.artists.map(artist => artist.name).join(", ")}</span>
                 </li>
