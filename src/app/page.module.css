@@ -139,6 +139,14 @@ a.secondary {
   color: var(--accent-secondary);
 }
 
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus, 
+.input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px var(--accent-primary) inset !important;
+    -webkit-text-fill-color: var(--foreground) !important;
+}
+
 .button {
   background-color: var(--button);
   outline: none;
@@ -186,14 +194,6 @@ a.secondary {
 
 .trackImage {
   margin-right: 8px;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px var(--accent-primary) inset !important;
-    -webkit-text-fill-color: var(--foreground) !important;
 }
 
 /* Enable hover only on non-touch devices */
