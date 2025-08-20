@@ -32,6 +32,11 @@ module.exports = {
         hostname: 'image-cdn-ak.spotifycdn.com',
         pathname: '/**',
        },
+      {
+        protocol: 'https',
+        hostname: 'image-cdn-fa.spotifycdn.com',
+        pathname: '/**',
+       },
     ]
   },
 };
