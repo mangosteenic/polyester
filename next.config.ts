@@ -21,7 +21,18 @@ module.exports = nextConfig;
 
 module.exports = {
   images: {
-    domains: ["mosaic.scdn.co", "image-cdn-ak.spotifycdn.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'mosaic.scdn.co',
+        pathname: '/**',
+       },
+       {
+        protocol: 'https',
+        hostname: 'image-cdn-ak.spotifycdn.com',
+        pathname: '/**',
+       },
+    ]
   },
 };
 
