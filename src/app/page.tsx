@@ -4,12 +4,18 @@ import { useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 
+type TrackObject = {
+  artists: { name: string }[];
+  name: string,
+}
+
 export default function Home() {
   const [playlist, setPlaylist] = useState({
     name: "",
     owner: { display_name: "" },
     description: "",
     images: [] as { url: string }[],
+    tracks: { items: [] as { track: TrackObject }[] },
   })
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,15 +58,27 @@ export default function Home() {
       </form>
       {playlist.name && (
         <div className={styles.playlist}>
-          <Image
-            src={playlist.images[0].url}
-            alt={playlist.name}
-            width={300}
-            height={300}
-          />
-          <h2>{playlist.name}</h2>
-          <h3>{playlist.owner.display_name}</h3>
-          <p>{playlist.description}</p>
+          <div className={styles.playlistInfo}>
+            <Image
+              src={playlist.images[0].url}
+              alt={playlist.name}
+              width={300}
+              height={300}
+            />
+            <h2>{playlist.name}</h2>
+            <h3>{playlist.owner.display_name}</h3>
+            <p>{playlist.description}</p>
+          </div>
+          <div className={styles.tracks}>
+            <ul>
+              {playlist.tracks.items.map((item, index) => (
+                <li key={index} className={styles.track}>
+                  <span>{item.track.name}</span>
+                  <span> by {item.track.artists.map(artist => artist.name).join(", ")}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
       <a href="https://getsongbpm.com">GetSongBPM</a>
