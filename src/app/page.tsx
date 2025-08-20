@@ -79,9 +79,9 @@ export default function Home() {
                     alt={item.track.name}
                     width={50}
                     height={50}
+                    className={styles.trackImage}
                   />
-                  <span>{item.track.name}</span>
-                  <span> by {item.track.artists.map(artist => artist.name).join(", ")}</span>
+                  <span>{item.track.name} by {item.track.artists.map(artist => artist.name).join(", ")}</span>
                 </li>
               ))}
             </ul>
