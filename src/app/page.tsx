@@ -18,6 +18,7 @@ export default function Home() {
     images: [] as { url: string }[],
     tracks: { items: [] as { track: TrackObject }[] },
   })
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -43,6 +44,29 @@ export default function Home() {
       console.error("Error fetching playlist:", error);
     }
   };
+
+  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    const song = playlist.tracks.items[0].track.name;
+    const artist = playlist.tracks.items[0].track.artists[0].name;
+
+    try {
+      const response = await fetch(`/api/search?song=${song}&artist=${artist}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const result = await response.json();
+      if (response.ok) {
+        console.log("Fetched Lyrics:", result);
+      } else {
+        console.error("Failed to fetch lyrics:", result);
+      }
+    } catch (error) {
+      console.error("Error fetching lyrics:", error);
+    }
+  }
 
   return (
     <div className={styles.page}>
@@ -87,6 +111,9 @@ export default function Home() {
             </ul>
           </div>
         </div>
+      )}
+      {playlist.tracks.items.length !== 0 && (
+        <button className={styles.button} onClick={handleClick}>assign me a painting</button>
       )}
       <a href="https://getsongbpm.com">GetSongBPM</a>
     </div>

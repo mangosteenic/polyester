@@ -1,4 +1,4 @@
-import { getAccessToken, getPlaylist } from "@/services/spotify"
+import { getPlaylist } from "@/services/spotify"
 
 export async function GET(
   request: Request,

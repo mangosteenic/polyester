@@ -111,6 +111,11 @@ a.secondary {
   flex-shrink: 0;
 }
 
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
 .form {
   min-width: 320px;
   text-align: center;
