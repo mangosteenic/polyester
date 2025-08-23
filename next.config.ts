@@ -44,7 +44,7 @@ module.exports = {
       },
       {
         protocol: 'https',
-        hostname: 'i.scdn.co',
+        hostname: 'www.artic.edu',
         pathname: '/**',
       },
     ]

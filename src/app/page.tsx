@@ -19,6 +19,8 @@ export default function Home() {
     tracks: { items: [] as { track: TrackObject }[] },
   })
 
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -47,24 +49,28 @@ export default function Home() {
 
   const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    const song = playlist.tracks.items[0].track.name;
-    const artist = playlist.tracks.items[0].track.artists[0].name;
+    const title = playlist.name.replaceAll(/[0-9]/g, '').trim();
 
     try {
-      const response = await fetch(`/api/search?song=${song}&artist=${artist}`, {
+      const response = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${title}&fields=image_id&query[match][artwork_type_title]=Painting&limit=5`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       });
       const result = await response.json();
+
+      const imageIDs = result.data.map((artwork: { image_id: number }) => artwork.image_id);
+      const imageUrls = imageIDs.map((image_id: number) => `https://www.artic.edu/iiif/2/${image_id}/full/843,/0/default.jpg`);
+      setImageUrls(imageUrls);
+
       if (response.ok) {
-        console.log("Fetched Lyrics:", result);
+        console.log("Search Result:", result);
       } else {
-        console.error("Failed to fetch lyrics:", result);
+        console.error("Failed to search:", result);
       }
     } catch (error) {
-      console.error("Error fetching lyrics:", error);
+      console.error("Error during search:", error);
     }
   }
 
@@ -113,8 +119,24 @@ export default function Home() {
         </div>
       )}
       {playlist.tracks.items.length !== 0 && (
-        <button className={styles.button} onClick={handleClick}>assign me a painting</button>
+        <button className={styles.button} onClick={handleClick}>suggest paintings</button>
       )}
+      {imageUrls.length > 0 && (
+        <div className={styles.suggestions}>
+          <div className={styles.imageGrid}>
+            {imageUrls.map((url, index) => (
+              <Image
+                key={index}
+                src={url}
+                alt={`Suggested artwork ${index + 1}`}
+                width={200}
+                height={200}
+                className={styles.suggestedImage}
+              />
+            ))}
+          </div>
+        </div>
+      ) }
       <a href="https://getsongbpm.com">GetSongBPM</a>
     </div>
   );
