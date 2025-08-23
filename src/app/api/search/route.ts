@@ -1,4 +1,4 @@
-import { getLyrics } from "@/services/genius";
+import { getLyrics } from "@/services/lyrics";
 
 export async function GET(
   request: Request,
