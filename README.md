@@ -1,3 +1,7 @@
+# polyester, a playlist app
+## about
+a spotify playlist app that will suggest paintings from the Art Institute of Chicago based on your playlist title
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
